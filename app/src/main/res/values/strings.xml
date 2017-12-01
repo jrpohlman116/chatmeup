@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Chat Me Up</string>
+    <string-array name="chatroon_array">
+        <item>Software Design</item>
+        <item>Group 9</item>
+    </string-array>
+</resources>
