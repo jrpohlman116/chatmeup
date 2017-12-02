@@ -1,24 +1,13 @@
 package com.jrpohlman.chatmeup;
 
-import android.content.ContentValues;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import com.jrpohlman.chatmeup.data.UserContract;
-import com.jrpohlman.chatmeup.data.UserContract.UserEntry;
-import com.jrpohlman.chatmeup.data.UserDbHelper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<User> words = new ArrayList<User>();
@@ -49,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*private void displayDatabaseInfo() {
-        UserDbHelper mDbHelper = new UserDbHelper(this);
+        ChatDbHelper mDbHelper = new ChatDbHelper(this);
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
         Cursor cursor;
         if (activeChat.equals("Software Design")){
