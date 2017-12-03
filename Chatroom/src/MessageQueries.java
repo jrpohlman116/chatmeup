@@ -131,7 +131,7 @@ public abstract class MessageQueries {
     }
 
     /*****************************
-     * Select all of the messages
+     * Select the specific user
      * in the database
      * @return a list of all the users
      *****************************/
