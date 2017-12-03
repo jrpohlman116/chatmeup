@@ -27,8 +27,6 @@ public class Login extends JFrame{
 
         setLayout(new GridBagLayout());
 
-
-
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.insets = new Insets(10, 5, 10, 5);
@@ -40,7 +38,6 @@ public class Login extends JFrame{
         Icon logo = new ImageIcon(getClass().getResource("ChatMeUp.png"));
         JLabel label = new JLabel("", logo, SwingConstants.CENTER);
         add(label, constraints);
-
 
         constraints.gridx = 0;
         constraints.gridy = 1;
