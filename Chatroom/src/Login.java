@@ -40,6 +40,7 @@ public class Login extends JFrame{
         add(selectLabel, constraints);
 
         constraints.gridx = 1;
+        chatroomsComboBox.setSelectedItem("Software Design");
         add(chatroomsComboBox, constraints);
 
         constraints.gridx = 0;
@@ -83,13 +84,15 @@ public class Login extends JFrame{
                 if (numberOfEntries > 0){
                     currentEntry = results.get(currentEntryIndex);
 
-                    if (currentEntry.getUsername().equals(user) && currentEntry.getPassword().equals(password)){
+                    if (currentEntry.getUsername().equals(user) && currentEntry.getPassOrMessage().equals(password)){
                         Client client;
+
+                        chatroomsComboBox.getSelectedIndex();
 
                         if (chatroomsComboBox.getSelectedItem().toString().equals("Software Design")){
                             client = new Client("chatRoomA", user);
                         }
-                        else{
+                        else {
                             client = new Client("chatRoomB", user);
                         }
 
