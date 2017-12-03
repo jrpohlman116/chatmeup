@@ -5,16 +5,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/********************************
+ * public class child class from
+ * MessageQueries for methods
+ ********************************/
 public class Group9MessageQueries extends MessageQueries{
-    private static final String URL = "jdbc:mysql://s-l112.engr.uiowa.edu:3306/engr_class009";
-    private static final String USERNAME = "engr_class009";
-    private static final String PASSWORD = "engr_class009-xyz";
 
-    private Connection connection; // manages connection
-    private PreparedStatement selectMessage;
-    private PreparedStatement insertNewMessage;
-
-    // constructor
+    /**************************
+     * Default Constructor for
+     * Group9MessageQueries
+     *************************/
     public Group9MessageQueries() {
         try {
             setConnection(DriverManager.getConnection(getURL(), getUSERNAME(), getPASSWORD()));

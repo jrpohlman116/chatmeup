@@ -8,10 +8,17 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 
-/**
- * Created by jpohlman on 12/2/17.
- */
+/**************************************
+ * A public class to run the login
+ * class functionality
+ *************************************/
 public class ChatDriver {
+    /*********************************************
+     * main function to set and run the frame
+     * @param args      the supplied command-line
+     *                  arguments as an array of
+     *                  String objects
+     ******************************************/
     public static void main(String[] args){
         Login frame = new Login();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

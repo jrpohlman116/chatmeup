@@ -5,30 +5,28 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/********************************
+ * public class child class from
+ * MessageQueries for methods
+ ********************************/
 public class UserQueries extends MessageQueries{
-    private static final String URL = "jdbc:mysql://s-l112.engr.uiowa.edu:3306/engr_class009";
-    private static final String USERNAME = "engr_class009";
-    private static final String PASSWORD = "engr_class009-xyz";
 
-    private Connection connection; // manages connection
-    private PreparedStatement selectUser;
-    private PreparedStatement insertNewUser;
-
-    // constructor
+    /**************************
+     * Default Constructor for
+     * UserQueries
+     *************************/
     public UserQueries() {
         try {
-            connection =
-                    DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            setConnection(DriverManager.getConnection(getURL(), getUSERNAME(), getPASSWORD()));
 
             // create query that selects all entries in the AddressBook
-            selectUser =
-                    connection.prepareStatement("SELECT * FROM login WHERE username = ? and password = ?");
+            setSelectMessage(getConnection().prepareStatement("SELECT * FROM login WHERE username = ? and password = ?"));
 
             // create insert that adds a new entry into the database
-            insertNewUser = connection.prepareStatement(
+            setInsertNewMessage(getConnection().prepareStatement(
                     "INSERT INTO login " +
                             "(username,password) " +
-                            "VALUES (?, ?)");
+                            "VALUES (?, ?)"));
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             System.exit(1);

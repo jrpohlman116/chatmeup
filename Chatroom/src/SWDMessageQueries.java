@@ -5,9 +5,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/********************************
+ * public class child class from
+ * MessageQueries for methods
+ ********************************/
 public class SWDMessageQueries extends MessageQueries{
 
-    // constructor
+    /**************************
+     * Default Constructor for
+     * SWDMessageQueries
+     *************************/
     public SWDMessageQueries() {
         try {
             setConnection(DriverManager.getConnection(getURL(), getUSERNAME(), getPASSWORD()));
