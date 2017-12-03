@@ -17,8 +17,10 @@ public class ClientBackground  extends SwingWorker<String, Void>{
     private Socket client; // socket to communicate with server
     private String chatRoom;
 
-    public ClientBackground(JTextArea displayArea){
+    public ClientBackground(JTextArea displayArea, JTextField enterField, String chatRoom){
         this.displayArea = displayArea;
+        this.enterField = enterField;
+        this.chatRoom = chatRoom;
     }
 
     @Override
@@ -99,7 +101,7 @@ public class ClientBackground  extends SwingWorker<String, Void>{
     }
 
     // send message to server
-    private void sendData(String message) {
+    public void sendData(String message) {
         try // send object to server
         {
             output.writeObject("CLIENT>>> " + message);

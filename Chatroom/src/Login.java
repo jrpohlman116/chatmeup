@@ -87,13 +87,11 @@ public class Login extends JFrame{
                         Client client;
 
                         if (chatroomsComboBox.getSelectedItem().toString().equals("Software Design")){
-                            client = new Client("chatRoomA");
+                            client = new Client("chatRoomA", user);
                         }
                         else{
-                            client = new Client("chatRoomB");
+                            client = new Client("chatRoomB", user);
                         }
-
-                        client.runClient();
 
                     }
                     else{
