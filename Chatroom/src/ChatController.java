@@ -21,6 +21,7 @@ public class ChatController {
     private Parent root;
     private Scene scene;
     private Stage stage;
+    private String activeUser;
 
     @FXML
     private Label userLabel;
@@ -37,26 +38,6 @@ public class ChatController {
     @FXML
     private void sendButtonPressed(ActionEvent event){
 
-    }
-
-    public ChatController(){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ChatScreen.fxml"));
-        fxmlLoader.setController(this);
-        try{
-            root = (Parent) fxmlLoader.load();
-            scene = new Scene(root);
-
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    public void openChat(Stage stage, String username, String chatroom){
-        stage = new Stage();
-        stage.setTitle(chatroom);
-        stage.setScene(new Scene(root));
-        userLabel.setText(username);
-        stage.show();
     }
 
 }
