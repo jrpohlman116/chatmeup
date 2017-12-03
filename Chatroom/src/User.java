@@ -1,35 +1,69 @@
-// Fig. 28.30: Person.java
-// Person class that represents an entry in an address book.
+/**************************
+ * public class User for the
+ * users, the passwords,
+ * and their messages on the
+ * database
+ **************************/
 public class User {
     private String username;
     private String passOrMessage;
 
     // constructor
+
+    /**************************
+     * User default constructor
+     **************************/
     public User() {
     }
 
     // constructor
+
+    /**************************
+     * User constructor given
+     * a username and a password
+     * or message
+     * @param username
+     * @param passOrMessage
+     **************************/
     public User(String username, String passOrMessage) {
         setUsername(username);
         setPassOrMessage(passOrMessage);
     }
 
-    // returns the first name
+    /***************************
+     * get the username from the
+     * User class
+     * @return  String username
+     **************************/
     public String getUsername() {
         return username;
     }
 
-    // sets the username
+    /**************************
+     * sets the username
+     * @param username
+     **************************/
     public void setUsername(String username) {
         this.username = username;
     }
 
     // returns the last name
+
+    /**************************
+     * get the password or message
+     * @return String password or message
+     **************************/
     public String getPassOrMessage() {
         return passOrMessage;
     }
 
     // sets the password
+
+    /***************************
+     * Set the user's password
+     * or messagge
+     * @param passOrMessage
+     ***************************/
     public void setPassOrMessage(String passOrMessage) {
         this.passOrMessage = passOrMessage;
     }
