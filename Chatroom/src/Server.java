@@ -147,7 +147,7 @@ public class Server extends JFrame {
                                 chatRoomA.add(chatter);
                                 noChatRoom.remove(chatter);
                                 displayMessage("Connection " +myConID+" added to ChatRoomA\n");
-                                message = ("Welcome to Chat Room A");
+                                message = ("Welcome to the Software Design Chat Room");
                                 sendData(message);
                             }
                         }
@@ -157,7 +157,7 @@ public class Server extends JFrame {
                                 chatRoomB.add(chatter);
                                 noChatRoom.remove(chatter);
                                 displayMessage("Connection " +myConID+" added to ChatRoomB\n");
-                                message = ("Welcome to Chat Room B");
+                                message = ("Welcome to the Group 9 Chat Room");
                                 sendData(message);
                             }
                         }

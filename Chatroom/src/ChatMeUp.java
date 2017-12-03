@@ -15,7 +15,7 @@ public class ChatMeUp {
     public static void main(String[] args){
         Login frame = new Login();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300,150);
+        frame.pack();
         frame.setVisible(true);
     }
 }

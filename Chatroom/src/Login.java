@@ -35,7 +35,7 @@ public class Login extends JFrame{
         constraints.insets = new Insets(10, 5, 10, 5);
         constraints.gridx = 0;
         constraints.gridy = 0;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
         constraints.gridheight = 1;
         add(selectLabel, constraints);
 
@@ -47,9 +47,7 @@ public class Login extends JFrame{
         constraints.gridwidth = 4;
         add(usernameText, constraints);
 
-        constraints.gridx = 0;
         constraints.gridy = 2;
-        constraints.gridwidth = 4;
         add(passwordText, constraints);
 
         constraints.gridx = 0;
@@ -62,8 +60,11 @@ public class Login extends JFrame{
         registerButton.addActionListener(rHandler);
         add(registerButton, constraints);
 
-        setSize(300, 150); // set size of window
-        setVisible(true); // show window
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        constraints.gridwidth = 4;
+        errorLabel.setVisible(false);
+        add(errorLabel, constraints);
     } // end Client constructor
 
     private class LoginHandler implements ActionListener{
@@ -83,19 +84,26 @@ public class Login extends JFrame{
                     currentEntry = results.get(currentEntryIndex);
 
                     if (currentEntry.getUsername().equals(user) && currentEntry.getPassword().equals(password)){
-                        Client application; // declare client application
+                        Client client;
 
-                        application = new Client("chatRoomB;"); // connect to localhost
+                        if (chatroomsComboBox.getSelectedItem().toString().equals("Software Design")){
+                            client = new Client("chatRoomA");
+                        }
+                        else{
+                            client = new Client("chatRoomB");
+                        }
 
-                        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        application.runClient();
+                        client.runClient();
+
                     }
                     else{
                         errorLabel.setText("Failure - Wrong Username/Password");
+                        errorLabel.setVisible(true);
                     }
                 }
                 else{
                     errorLabel.setText("Failure - Wrong Username/Password");
+                    errorLabel.setVisible(true);
                 }
             }
             catch(Exception ex){

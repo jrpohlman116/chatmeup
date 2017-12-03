@@ -11,9 +11,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.*;
 
 public class Client extends JFrame {
+    private static String user;
+    private static String password;
+    private User currentEntry;
+    private SWDMessageQueries messageQuery;
+    private int numberOfEntries = 0;
+    private int currentEntryIndex = 0;
     private JTextField enterField; // enters information from user
+    private JTextField chatroomField; // enters chatroom name
+    private JLabel selectLabel = new JLabel("Select Chatroom");
+    private String[] chatroomsArray = {"Software Design", "Group Nine"};
+    private JComboBox<String> chatroomsComboBox = new JComboBox<String>(chatroomsArray);
     private JTextArea displayArea; // display information to user
     private ObjectOutputStream output; // output stream to server
     private ObjectInputStream input; // input stream from server
@@ -22,12 +33,57 @@ public class Client extends JFrame {
     private Socket client; // socket to communicate with server
     private String chatRoom;
 
+    public String getChatRoom() {
+        return chatRoom;
+    }
+
+    public void setChatRoom(String chatRoom) {
+        this.chatRoom = chatRoom;
+    }
+
     // initialize chatServer and set up GUI
     public Client(String chatRoom) {
         super("Client");
+        setLayout(new BorderLayout());
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
 
         this.chatRoom = chatRoom;
         chatServer = "127.0.0.1"; // set server to which this client connects
+
+        JPanel textEntryPanel = new JPanel();
+        textEntryPanel.setLayout(new GridBagLayout());
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.insets = new Insets(5, 5, 5, 5);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        textEntryPanel.add(selectLabel, constraints);
+
+        constraints.gridx = 1;
+        chatroomsComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (chatroomsComboBox.getSelectedItem().toString().equals("Software Design")){
+                    setChatRoom("chatRoomA");
+                }
+                else{
+                    setChatRoom("chatRoomB");
+                }
+
+                runClient();
+            }
+        });
+        textEntryPanel.add(chatroomsComboBox, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridwidth = 4;
+
 
         enterField = new JTextField(); // create enterField
         enterField.setEditable(false);
@@ -35,19 +91,26 @@ public class Client extends JFrame {
                 new ActionListener() {
                     // send message to server
                     public void actionPerformed(ActionEvent event) {
+                        int results;
+
+                        messageQuery = new SWDMessageQueries();
+                        results = messageQuery.addMessage(user, event.getActionCommand());
+
                         sendData(event.getActionCommand());
                         enterField.setText("");
                     }
                 }
         );
 
-        add(enterField, BorderLayout.NORTH);
+        textEntryPanel.add(enterField, constraints);
 
         displayArea = new JTextArea(); // create displayArea
         displayArea.setEditable(false);
-        add(new JScrollPane(displayArea), BorderLayout.CENTER);
+        mainPanel.add(textEntryPanel,BorderLayout.NORTH);
+        mainPanel.add(new JScrollPane(displayArea), BorderLayout.CENTER);
 
-        setSize(300, 150); // set size of window
+        add(mainPanel);
+        setSize(300, 300); // set size of window
         setVisible(true); // show window
     } // end Client constructor
 
