@@ -37,7 +37,7 @@ public class UserQueries {
 
     // select all of the addresses in the database
     public List<User> getUser(String user, String password) {
-        List<User> results = null;
+        ArrayList<User> results = new ArrayList<User>();
         ResultSet resultSet = null;
 
         try {
