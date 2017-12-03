@@ -26,7 +26,7 @@ public class UserQueries {
 
             // create insert that adds a new entry into the database
             insertNewUser = connection.prepareStatement(
-                    "INSERT INTO Addresses " +
+                    "INSERT INTO login " +
                             "(username,password) " +
                             "VALUES (?, ?)");
         } catch (SQLException sqlException) {
