@@ -149,7 +149,7 @@ public abstract class MessageQueries {
             while (resultSet.next()) {
                 results.add(new User(
                         resultSet.getString("username"),
-                        resultSet.getString("message")));
+                        resultSet.getString("password")));
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
