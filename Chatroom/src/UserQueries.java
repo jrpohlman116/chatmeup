@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserQueries {
+public class UserQueries extends MessageQueries{
     private static final String URL = "jdbc:mysql://s-l112.engr.uiowa.edu:3306/engr_class009";
     private static final String USERNAME = "engr_class009";
     private static final String PASSWORD = "engr_class009-xyz";
@@ -35,65 +35,6 @@ public class UserQueries {
         }
     } // end PersonQueries constructor
 
-    // select all of the addresses in the database
-    public List<User> getUser(String user, String password) {
-        ArrayList<User> results = new ArrayList<User>();
-        ResultSet resultSet = null;
-
-        try {
-            selectUser.setString(1, user);
-            selectUser.setString(2, password);
-            // executeQuery returns ResultSet containing matching entries
-            resultSet = selectUser.executeQuery();
-
-            while (resultSet.next()) {
-                results.add(new User(
-                        resultSet.getString("username"),
-                        resultSet.getString("password")));
-            }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-        } finally {
-            try {
-                resultSet.close();
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-                close();
-            }
-        }
-
-        return results;
-    }
-
-
-    // add an entry
-    public int addUser(
-            String user, String pass) {
-        int result = 0;
-
-        // set parameters, then execute insertNewPerson
-        try {
-            insertNewUser.setString(1, user);
-            insertNewUser.setString(2, pass);
-
-            // insert the new entry; returns # of rows updated
-            result = insertNewUser.executeUpdate();
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-            close();
-        }
-
-        return result;
-    }
-
-    // close the database connection
-    public void close() {
-        try {
-            connection.close();
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-        }
-    }
 } // end class PersonQueries
 
 

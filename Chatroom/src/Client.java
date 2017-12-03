@@ -78,11 +78,11 @@ public class Client extends JFrame {
 
                         if (chatRoom.equals("chatRoomA")){
                             messageQuery = new SWDMessageQueries();
-                            results = messageQuery.addMessage(user, event.getActionCommand());
+                            results = messageQuery.addUser(user, event.getActionCommand());
                         }
                         else{
                             messageQuery = new Group9MessageQueries();
-                            results = messageQuery.addMessage(user, event.getActionCommand());
+                            results = messageQuery.addUser(user, event.getActionCommand());
                         }
 
                         clientBackground.sendData(user + ": " + event.getActionCommand());
