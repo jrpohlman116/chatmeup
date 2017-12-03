@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.*;
+import java.util.List;
 
 public class Client extends JFrame {
     private static String user;
@@ -34,6 +35,7 @@ public class Client extends JFrame {
     private String chatRoom;
     private String username;
     private ClientBackground clientBackground;
+    private List<User> messageResults;
 
     public String getChatRoom() {
         return chatRoom;
@@ -54,6 +56,19 @@ public class Client extends JFrame {
 
         Font font = new Font("serif", Font.PLAIN,16);
 
+
+
+        if (chatRoom.equals("chatRoomA")){
+            messageQuery = new SWDMessageQueries();
+            messageResults = messageQuery.getMessage();
+            numberOfEntries = messageResults.size();
+        }
+        else{
+            messageQuery = new Group9MessageQueries();
+            messageResults = messageQuery.getMessage();
+            numberOfEntries = messageResults.size();
+        }
+
         enterField = new JTextField(); // create enterField
         enterField.setEditable(false);
         enterField.setFont(font);
@@ -63,7 +78,7 @@ public class Client extends JFrame {
                     public void actionPerformed(ActionEvent event) {
                         int results;
 
-                        if (chatRoom.equals("chatRooomA")){
+                        if (chatRoom.equals("chatRoomA")){
                             messageQuery = new SWDMessageQueries();
                             results = messageQuery.addMessage(user, event.getActionCommand());
                         }
@@ -72,7 +87,7 @@ public class Client extends JFrame {
                             results = messageQuery.addMessage(user, event.getActionCommand());
                         }
 
-                        clientBackground.sendData(event.getActionCommand());
+                        clientBackground.sendData(user + ": " + event.getActionCommand());
                         enterField.setText("");
                     }
                 }
@@ -81,14 +96,26 @@ public class Client extends JFrame {
         displayArea = new JTextArea(); // create displayArea
         displayArea.setEditable(false);
         displayArea.setFont(font);
+        displayArea.setLineWrap(true);
+        displayArea.setWrapStyleWord(true);
         add(enterField,BorderLayout.NORTH);
-        add(new JScrollPane(displayArea), BorderLayout.CENTER);
+        add(new JScrollPane(displayArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
 
         setSize(300, 300); // set size of window
         setVisible(true); // show window
 
-        clientBackground = new ClientBackground(displayArea, enterField, getChatRoom());
+        displayDatabaseMessages();
+
+        clientBackground = new ClientBackground(displayArea, enterField, getChatRoom(), username);
         clientBackground.execute();
 
     } // end Client constructor
+
+    public void displayDatabaseMessages(){
+        for (int i = 0; i < numberOfEntries; i++){
+            displayArea.append("\n" + messageResults.get(i).getUsername() + ": " + messageResults.get(i).getPassOrMessage());
+        }
+
+    }
+
 }

@@ -16,11 +16,13 @@ public class ClientBackground  extends SwingWorker<String, Void>{
     private String chatServer; // host server for this application
     private Socket client; // socket to communicate with server
     private String chatRoom;
+    private String username;
 
-    public ClientBackground(JTextArea displayArea, JTextField enterField, String chatRoom){
+    public ClientBackground(JTextArea displayArea, JTextField enterField, String chatRoom, String user){
         this.displayArea = displayArea;
         this.enterField = enterField;
         this.chatRoom = chatRoom;
+        this.username = user;
     }
 
     @Override
@@ -76,7 +78,7 @@ public class ClientBackground  extends SwingWorker<String, Void>{
             try // read message and display it
             {
                 message = (String) input.readObject(); // read new message
-                displayMessage("\n" + message); // display message
+                displayMessage(message); // display message
             }
             catch (ClassNotFoundException classNotFoundException) {
                 displayMessage("\nUnknown object type received");
@@ -118,7 +120,7 @@ public class ClientBackground  extends SwingWorker<String, Void>{
                 new Runnable() {
                     public void run() // updates displayArea
                     {
-                        displayArea.append(messageToDisplay);
+                        displayArea.append("\n" + messageToDisplay);
                     }
                 }
         );
@@ -134,10 +136,5 @@ public class ClientBackground  extends SwingWorker<String, Void>{
                     }
                 }
         );
-    }
-
-    @Override
-    protected void process(List chunks) {
-        super.process(chunks);
     }
 }

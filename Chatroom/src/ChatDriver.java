@@ -11,7 +11,7 @@ import javax.swing.*;
 /**
  * Created by jpohlman on 12/2/17.
  */
-public class ChatMeUp {
+public class ChatDriver {
     public static void main(String[] args){
         Login frame = new Login();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

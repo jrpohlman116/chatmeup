@@ -20,7 +20,7 @@ public class Group9MessageQueries extends MessageQueries{
             setConnection(DriverManager.getConnection(getURL(), getUSERNAME(), getPASSWORD()));
 
             // create query that selects all entries in the AddressBook
-            setSelectMessage(getConnection().prepareStatement("SELECT * FROM group9 WHERE username = ? and message = ?"));
+            setSelectMessage(getConnection().prepareStatement("SELECT * FROM group9"));
 
             // create insert that adds a new entry into the database
             setInsertNewMessage(getConnection().prepareStatement(

@@ -2,16 +2,16 @@
 // Person class that represents an entry in an address book.
 public class User {
     private String username;
-    private String password;
+    private String passOrMessage;
 
     // constructor
     public User() {
     }
 
     // constructor
-    public User(String username, String password) {
+    public User(String username, String passOrMessage) {
         setUsername(username);
-        setPassword(password);
+        setPassOrMessage(passOrMessage);
     }
 
     // returns the first name
@@ -25,13 +25,13 @@ public class User {
     }
 
     // returns the last name
-    public String getPassword() {
-        return password;
+    public String getPassOrMessage() {
+        return passOrMessage;
     }
 
     // sets the password
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassOrMessage(String passOrMessage) {
+        this.passOrMessage = passOrMessage;
     }
 } // end class Person
 

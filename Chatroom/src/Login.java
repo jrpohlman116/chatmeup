@@ -1,6 +1,3 @@
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -30,8 +27,6 @@ public class Login extends JFrame{
 
         setLayout(new GridBagLayout());
 
-
-
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.insets = new Insets(10, 5, 10, 5);
@@ -51,6 +46,7 @@ public class Login extends JFrame{
         add(selectLabel, constraints);
 
         constraints.gridx = 1;
+        chatroomsComboBox.setSelectedItem("Software Design");
         add(chatroomsComboBox, constraints);
 
         constraints.gridx = 0;
@@ -94,13 +90,15 @@ public class Login extends JFrame{
                 if (numberOfEntries > 0){
                     currentEntry = results.get(currentEntryIndex);
 
-                    if (currentEntry.getUsername().equals(user) && currentEntry.getPassword().equals(password)){
+                    if (currentEntry.getUsername().equals(user) && currentEntry.getPassOrMessage().equals(password)){
                         Client client;
+
+                        chatroomsComboBox.getSelectedIndex();
 
                         if (chatroomsComboBox.getSelectedItem().toString().equals("Software Design")){
                             client = new Client("chatRoomA", user);
                         }
-                        else{
+                        else {
                             client = new Client("chatRoomB", user);
                         }
 
