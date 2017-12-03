@@ -51,13 +51,12 @@ public abstract class MessageQueries {
     }
 
     // select all of the addresses in the database
-    public List<User> getMessage(String user, String message) {
+    public List<User> getMessage() {
         ArrayList<User> results = new ArrayList<User>();
         ResultSet resultSet = null;
 
         try {
-            selectMessage.setString(1, user);
-            selectMessage.setString(2, message);
+
             // executeQuery returns ResultSet containing matching entries
             resultSet = selectMessage.executeQuery();
 
