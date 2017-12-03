@@ -1,6 +1,3 @@
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
