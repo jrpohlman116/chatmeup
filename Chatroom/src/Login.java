@@ -128,15 +128,21 @@ public class Login extends JFrame{
             password = passwordText.getText();
 
             try{
-                personQueries = new UserQueries();
-                results = personQueries.addUser(user, password);
+                if (!user.equals("") && !password.equals("")){
+                    personQueries = new UserQueries();
+                    results = personQueries.addUser(user, password);
 
-                if (results == 1){
-                    errorLabel.setText("Successful Registration.\nPlease Select Login.");
+                    if (results == 1){
+                        errorLabel.setText("Successful Registration.\nPlease Select Login.");
+                    }
+                    else{
+                        errorLabel.setText("Error Try Again");
+                    }
                 }
                 else{
                     errorLabel.setText("Error Try Again");
                 }
+
             }
             catch(Exception ex){
                 ex.printStackTrace();
