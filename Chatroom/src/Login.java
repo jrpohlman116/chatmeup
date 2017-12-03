@@ -44,7 +44,6 @@ public class Login extends JFrame{
         JLabel label = new JLabel("", logo, SwingConstants.CENTER);
         add(label, constraints);
 
-
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.gridwidth = 1;

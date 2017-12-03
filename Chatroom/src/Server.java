@@ -199,6 +199,7 @@ public class Server extends JFrame {
             message = message.replace("kitty","\uD83D\uDE3A");
             message = message.replace("This is due tomorrow","\uD83D\uDE31");
             message = message.replace("finals","\uD83D\uDE2D");
+            message = message.replace("<3","\uD83D\uDC94");
             return message;
         }
 
