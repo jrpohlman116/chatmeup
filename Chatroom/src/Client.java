@@ -54,6 +54,7 @@ public class Client extends JFrame {
         this.username = user;
         chatServer = "127.0.0.1"; // set server to which this client connects
 
+        Font font = new Font("serif", Font.PLAIN,16);
 
 
 
@@ -70,6 +71,7 @@ public class Client extends JFrame {
 
         enterField = new JTextField(); // create enterField
         enterField.setEditable(false);
+        enterField.setFont(font);
         enterField.addActionListener(
                 new ActionListener() {
                     // send message to server
@@ -93,6 +95,7 @@ public class Client extends JFrame {
 
         displayArea = new JTextArea(); // create displayArea
         displayArea.setEditable(false);
+        displayArea.setFont(font);
         displayArea.setLineWrap(true);
         displayArea.setWrapStyleWord(true);
         add(enterField,BorderLayout.NORTH);
