@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserQueries {
-    private static final String URL = "jdbc:derby:addressbook";
-    private static final String USERNAME = "deitel";
-    private static final String PASSWORD = "deitel";
+    private static final String URL = "jdbc:mysql://s-l112.engr.uiowa.edu:3306/engr_class009";
+    private static final String USERNAME = "engr_class009";
+    private static final String PASSWORD = "engr_class009-xyz";
 
     private Connection connection; // manages connection
     private PreparedStatement selectUser;
@@ -36,11 +36,13 @@ public class UserQueries {
     } // end PersonQueries constructor
 
     // select all of the addresses in the database
-    public List<User> getUser() {
+    public List<User> getUser(String user, String password) {
         List<User> results = null;
         ResultSet resultSet = null;
 
         try {
+            selectUser.setString(1, user);
+            selectUser.setString(2, password);
             // executeQuery returns ResultSet containing matching entries
             resultSet = selectUser.executeQuery();
 
