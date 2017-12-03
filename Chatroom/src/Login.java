@@ -30,11 +30,23 @@ public class Login extends JFrame{
 
         setLayout(new GridBagLayout());
 
+
+
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.insets = new Insets(10, 5, 10, 5);
         constraints.gridx = 0;
         constraints.gridy = 0;
+        constraints.gridwidth = 4;
+        constraints.gridheight = 1;
+
+        Icon logo = new ImageIcon(getClass().getResource("ChatMeUp.png"));
+        JLabel label = new JLabel("", logo, SwingConstants.CENTER);
+        add(label, constraints);
+
+
+        constraints.gridx = 0;
+        constraints.gridy = 1;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
         add(selectLabel, constraints);
@@ -43,15 +55,15 @@ public class Login extends JFrame{
         add(chatroomsComboBox, constraints);
 
         constraints.gridx = 0;
-        constraints.gridy = 1;
+        constraints.gridy = 2;
         constraints.gridwidth = 4;
         add(usernameText, constraints);
 
-        constraints.gridy = 2;
+        constraints.gridy = 3;
         add(passwordText, constraints);
 
         constraints.gridx = 0;
-        constraints.gridy = 3;
+        constraints.gridy = 4;
         constraints.gridwidth = 1;
         loginButton.addActionListener(lHandler);
         add(loginButton, constraints);
@@ -61,7 +73,7 @@ public class Login extends JFrame{
         add(registerButton, constraints);
 
         constraints.gridx = 0;
-        constraints.gridy = 4;
+        constraints.gridy = 5;
         constraints.gridwidth = 4;
         errorLabel.setVisible(false);
         add(errorLabel, constraints);

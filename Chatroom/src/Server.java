@@ -162,11 +162,7 @@ public class Server extends JFrame {
                             }
                         }
                     } else {
-//                        SockServer checker = new SockServer(myConID);
-//                        //displayMessage("Checker myConID: "+checker.myConID+"\n");
-//                        for (SockServer chatter: chatRoomA) {
-//                            displayMessage(chatter.);
-//                        }
+                        message = checkEmoji(message);
                         if(chatRoomA.contains(this)) {
                             displayMessage("Connection " +myConID+" wrote in ChatRoomA\n");
                             for (SockServer chatter : chatRoomA) {
@@ -192,6 +188,18 @@ public class Server extends JFrame {
                 }
 
             } while (!message.equals("CLIENT>>> TERMINATE"));
+        }
+
+        private String checkEmoji(String message) throws IOException {
+            message = message.replace(":)","\uD83D\uDE00");
+            message = message.replace(":(","\u2639");
+            message = message.replace(";)","\uD83D\uDE18");
+            message = message.replace("B)","\uD83D\uDE0E");
+            message = message.replace("poo","\uD83D\uDCA9");
+            message = message.replace("kitty","\uD83D\uDE3A");
+            message = message.replace("This is due tomorrow","\uD83D\uDE31");
+            message = message.replace("finals","\uD83D\uDE2D");
+            return message;
         }
 
         // close streams and socket
