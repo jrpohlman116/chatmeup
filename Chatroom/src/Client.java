@@ -68,7 +68,8 @@ public class Client extends JFrame {
 
         this.chatRoom = chatRoom;
         this.username = user;
-        chatServer = "127.0.0.1"; // set server to which this client connects
+        chatServer = "10.0.1.5"; // set server to which this client connects
+        //chatServer = "127.0.0.1";
 
         Font font = new Font("serif", Font.PLAIN,16);
 
