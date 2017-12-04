@@ -3,6 +3,10 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/***********************************
+ * public class extending JFrame to
+ * execute the login swing GUI froma
+ ***********************************/
 public class Login extends JFrame{
     private static String user;
     private static String password;
@@ -21,7 +25,10 @@ public class Login extends JFrame{
     private RegisterHandler rHandler = new RegisterHandler();
     private LoginHandler lHandler = new LoginHandler();
 
-    // initialize chatServer and set up GUI
+    /********************************
+     * Login constructor to initialize
+     * the GUI frame
+     ********************************/
     public Login() {
         super("Login");
 
@@ -73,27 +80,39 @@ public class Login extends JFrame{
         add(errorLabel, constraints);
     } // end Client constructor
 
+    /********************************
+     * private class implementing an
+     * Action listener to handle
+     * the login button command
+     ********************************/
     private class LoginHandler implements ActionListener{
 
+        /*************************************************
+         * button press event that creates a database query
+         * to select username and password provided by the
+         * user and start the client based on the results
+         * @param e     actionevent
+         *************************************************/
         @Override
         public void actionPerformed(java.awt.event.ActionEvent e) {
-            List<User> results;
+            List<User> results; //results from the select query
             user = usernameText.getText();
             password = passwordText.getText();
 
             try{
                 personQueries = new UserQueries();
-                results = personQueries.getUser(user, password);
-                numberOfEntries = results.size();
+                results = personQueries.getUser(user, password); //find the user in the database table
+                numberOfEntries = results.size(); //number of entries in the table per given user
 
                 if (numberOfEntries > 0){
                     currentEntry = results.get(currentEntryIndex);
 
+                    //if the entry matches the username and password given
                     if (currentEntry.getUsername().equals(user) && currentEntry.getPassOrMessage().equals(password)){
                         Client client;
-
                         chatroomsComboBox.getSelectedIndex();
 
+                        //start client based on chatroom selected
                         if (chatroomsComboBox.getSelectedItem().toString().equals("Software Design")){
                             client = new Client("chatRoomA", user);
                         }
@@ -116,8 +135,19 @@ public class Login extends JFrame{
         }
     }
 
+    /********************************
+     * private class implementing an
+     * Action listener to handle
+     * the register button command
+     ********************************/
     private class RegisterHandler implements ActionListener{
 
+        /*************************************************
+         * button press event that creates a database query
+         * to create username and password provided by the
+         * user if it does not already exist in the table
+         * @param e     actionevent
+         *************************************************/
         @Override
         public void actionPerformed(java.awt.event.ActionEvent e) {
             int results;
@@ -126,15 +156,18 @@ public class Login extends JFrame{
             password = passwordText.getText();
 
             try{
+                //if the user and password fields are empty, provide an error
                 if (!user.equals("") && !password.equals("")){
                     personQueries = new UserQueries();
-
+                    //Find and select user based on input
                     selectResults = personQueries.getUser(user, password);
                     numberOfEntries = selectResults.size();
 
+                    //if the user is not found in the database, create new
                     if (numberOfEntries == 0 ){
                         results = personQueries.addUser(user, password);
 
+                        //provide feedback
                         if (results == 1){
                             errorLabel.setText("Successful Registration.\nPlease Select Login.");
                         }
