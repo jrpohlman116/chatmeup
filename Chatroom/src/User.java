@@ -8,8 +8,6 @@ public class User {
     private String username;
     private String passOrMessage;
 
-    // constructor
-
     /**************************
      * User default constructor
      **************************/

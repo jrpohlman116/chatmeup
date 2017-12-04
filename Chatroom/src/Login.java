@@ -110,7 +110,6 @@ public class Login extends JFrame{
                     //if the entry matches the username and password given
                     if (currentEntry.getUsername().equals(user) && currentEntry.getPassOrMessage().equals(password)){
                         Client client;
-                        chatroomsComboBox.getSelectedIndex();
 
                         //start client based on chatroom selected
                         if (chatroomsComboBox.getSelectedItem().toString().equals("Software Design")){
