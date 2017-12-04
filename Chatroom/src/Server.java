@@ -158,7 +158,7 @@ public class Server extends JFrame {
         }
 
         /**
-         * process connection with client, process and properly respond to data from client:
+         * process connection with client: process and properly respond to data from client:
          * Ability to place client in new chatRoom ArrayList and/or send message to every
          * Client in certain chatRoom
          * @throws IOException exception if input or output stream has error
