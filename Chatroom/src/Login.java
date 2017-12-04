@@ -139,17 +139,17 @@ public class Login extends JFrame{
                             errorLabel.setText("Successful Registration.\nPlease Select Login.");
                         }
                         else{
-                            errorLabel.setText("Error Try Again");
+                            errorLabel.setText("Error - Unable to Register");
                         }
                     }
                     else{
-                        errorLabel.setText("Error Try Again");
+                        errorLabel.setText("Error: Username not available");
                     }
 
 
                 }
                 else{
-                    errorLabel.setText("Error Try Again");
+                    errorLabel.setText("Username/Password cannot be blank");
                 }
 
             }
