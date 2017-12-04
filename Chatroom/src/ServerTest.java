@@ -1,15 +1,17 @@
-// Fig. 27.6: ServerTest.java
-// Test the Server application.
-
 import javax.swing.*;
-
+/**
+ * Driver class which creates a Server object to show the functionality
+ * of the Server through interaction with a Client
+ * @see Server
+ * @see Client
+ */
 public class ServerTest {
     public static void main(String[] args) {
         Server application = new Server(); // create server
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        application.runServer(); // run server application
-    } // end main
-} // end class ServerTest
+        application.runServer();
+    }
+}
 
 /**************************************************************************
  * (C) Copyright 1992-2012 by Deitel & Associates, Inc. and               *

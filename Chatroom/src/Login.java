@@ -33,6 +33,7 @@ public class Login extends JFrame{
         super("Login");
 
         setLayout(new GridBagLayout());
+        this.getContentPane().setBackground(new Color(191,222,233, 140));
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
