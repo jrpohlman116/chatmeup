@@ -6,7 +6,7 @@ import java.util.List;
  * Abstract public class handling the
  * database queries and constants
  *************************************/
-public abstract class MessageQueries {
+public class MessageQueries {
     private static final String URL = "jdbc:mysql://s-l112.engr.uiowa.edu:3306/engr_class009"; //jdbc connection string
     private static final String USERNAME = "engr_class009"; //group username
     private static final String PASSWORD = "engr_class009-xyz"; //group password
