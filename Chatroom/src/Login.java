@@ -17,7 +17,7 @@ public class Login extends JFrame{
     private JComboBox<String> chatroomsComboBox = new JComboBox<String>(chatroomsArray);
     private JButton loginButton = new JButton("Login");
     private JButton registerButton = new JButton("Register");
-    private JLabel errorLabel = new JLabel("Incorrect Username/Password");
+    private JLabel errorLabel = new JLabel("");
     private RegisterHandler rHandler = new RegisterHandler();
     private LoginHandler lHandler = new LoginHandler();
 
@@ -70,7 +70,6 @@ public class Login extends JFrame{
         constraints.gridx = 0;
         constraints.gridy = 5;
         constraints.gridwidth = 4;
-        errorLabel.setVisible(false);
         add(errorLabel, constraints);
     } // end Client constructor
 
@@ -105,12 +104,10 @@ public class Login extends JFrame{
                     }
                     else{
                         errorLabel.setText("Failure - Wrong Username/Password");
-                        errorLabel.setVisible(true);
                     }
                 }
                 else{
                     errorLabel.setText("Failure - Wrong Username/Password");
-                    errorLabel.setVisible(true);
                 }
             }
             catch(Exception ex){
@@ -124,20 +121,32 @@ public class Login extends JFrame{
         @Override
         public void actionPerformed(java.awt.event.ActionEvent e) {
             int results;
+            List<User> selectResults;
             user = usernameText.getText();
             password = passwordText.getText();
 
             try{
                 if (!user.equals("") && !password.equals("")){
                     personQueries = new UserQueries();
-                    results = personQueries.addUser(user, password);
 
-                    if (results == 1){
-                        errorLabel.setText("Successful Registration.\nPlease Select Login.");
+                    selectResults = personQueries.getUser(user, password);
+                    numberOfEntries = selectResults.size();
+
+                    if (numberOfEntries == 0 ){
+                        results = personQueries.addUser(user, password);
+
+                        if (results == 1){
+                            errorLabel.setText("Successful Registration.\nPlease Select Login.");
+                        }
+                        else{
+                            errorLabel.setText("Error Try Again");
+                        }
                     }
                     else{
                         errorLabel.setText("Error Try Again");
                     }
+
+
                 }
                 else{
                     errorLabel.setText("Error Try Again");
