@@ -1,6 +1,3 @@
-// Fig. 27.7: Client.java
-// Client portion of a stream-socket connection between client and server.
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +11,10 @@ import java.net.Socket;
 import java.util.*;
 import java.util.List;
 
+/**
+ * Client class which extends JFrame to create the GUI interface which
+ * the ChatMeUp user may use to interact with other users
+ */
 public class Client extends JFrame {
     private static String user;
     private static String password;
@@ -37,15 +38,30 @@ public class Client extends JFrame {
     private ClientBackground clientBackground;
     private List<User> messageResults;
 
+    /**
+     * getter function for the chatRoom which the user desires to join/remain
+     * @return String representation of ChatRoom
+     */
     public String getChatRoom() {
         return chatRoom;
     }
 
+    /**
+     * setter function for the chatRoom which the user desires to join/remain
+     * @param chatRoom - String representation of ChatRoom
+     */
     public void setChatRoom(String chatRoom) {
         this.chatRoom = chatRoom;
     }
 
     // initialize chatServer and set up GUI
+    /**
+     * Client Constructor which sets up the GUI interface for the user to see and use
+     * while creating the connection between the server and establishing which chatroom
+     * to put he new Client user in
+     * @param chatRoom - String representation of desired ChatRoom
+     * @param user - username
+     */
     public Client(String chatRoom, String user) {
         super("Client");
         setLayout(new BorderLayout());
@@ -55,8 +71,6 @@ public class Client extends JFrame {
         chatServer = "127.0.0.1"; // set server to which this client connects
 
         Font font = new Font("serif", Font.PLAIN,16);
-
-
 
         if (chatRoom.equals("chatRoomA")){
             messageQuery = new SWDMessageQueries();
@@ -72,6 +86,7 @@ public class Client extends JFrame {
         enterField = new JTextField(); // create enterField
         enterField.setEditable(false);
         enterField.setFont(font);
+
         enterField.addActionListener(
                 new ActionListener() {
                     // send message to server
@@ -96,12 +111,13 @@ public class Client extends JFrame {
         displayArea = new JTextArea(); // create displayArea
         displayArea.setEditable(false);
         displayArea.setFont(font);
+        displayArea.setBackground(new Color(191,222,233, 140));
         displayArea.setLineWrap(true);
         displayArea.setWrapStyleWord(true);
         add(enterField,BorderLayout.NORTH);
         add(new JScrollPane(displayArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
 
-        setSize(300, 300); // set size of window
+        setSize(400, 500); // set size of window
         setVisible(true); // show window
 
         displayDatabaseMessages();
@@ -109,8 +125,11 @@ public class Client extends JFrame {
         clientBackground = new ClientBackground(displayArea, enterField, getChatRoom(), username);
         clientBackground.execute();
 
-    } // end Client constructor
+    }
 
+    /**
+     * Display the previous messages in the chat room from the database
+     */
     public void displayDatabaseMessages(){
         for (int i = 0; i < numberOfEntries; i++){
             displayArea.append("\n" + messageResults.get(i).getUsername() + ": " + messageResults.get(i).getPassOrMessage());
