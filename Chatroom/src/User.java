@@ -20,8 +20,8 @@ public class User {
      * User constructor given
      * a username and a password
      * or message
-     * @param username
-     * @param passOrMessage
+     * @param username name
+     * @param passOrMessage String message or new chat room name
      **************************/
     public User(String username, String passOrMessage) {
         setUsername(username);
@@ -39,7 +39,7 @@ public class User {
 
     /**************************
      * sets the username
-     * @param username
+     * @param username name
      **************************/
     public void setUsername(String username) {
         this.username = username;
@@ -60,7 +60,7 @@ public class User {
     /***************************
      * Set the user's password
      * or messagge
-     * @param passOrMessage
+     * @param passOrMessage String message or new chat room name
      ***************************/
     public void setPassOrMessage(String passOrMessage) {
         this.passOrMessage = passOrMessage;

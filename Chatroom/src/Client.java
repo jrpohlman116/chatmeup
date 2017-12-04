@@ -130,7 +130,7 @@ public class Client extends JFrame {
     /**
      * Display the previous messages in the chat room from the database
      */
-    public void displayDatabaseMessages(){
+    private void displayDatabaseMessages(){
         for (int i = 0; i < numberOfEntries; i++){
             displayArea.append("\n" + messageResults.get(i).getUsername() + ": " + messageResults.get(i).getPassOrMessage());
         }

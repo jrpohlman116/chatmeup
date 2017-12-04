@@ -53,7 +53,7 @@ public abstract class MessageQueries {
 
     /*********************************
      * Set the connection instance variable
-     * @param connection
+     * @param connection connection between Server and Client
      ********************************/
     public void setConnection(Connection connection) {
         this.connection = connection;
@@ -71,7 +71,7 @@ public abstract class MessageQueries {
     /******************************
      * Set the select message
      * instance variable
-     * @param selectMessage
+     * @param selectMessage PreparedStatement which represents selectMessage
      *****************************/
     public void setSelectMessage(PreparedStatement selectMessage) {
         this.selectMessage = selectMessage;
@@ -89,7 +89,7 @@ public abstract class MessageQueries {
     /*****************************
      * Set the insertNewMessage
      * instance variable
-     * @param insertNewMessage
+     * @param insertNewMessage new message to be inlcuded
      *****************************/
     public void setInsertNewMessage(PreparedStatement insertNewMessage) {
         this.insertNewMessage = insertNewMessage;
@@ -168,8 +168,8 @@ public abstract class MessageQueries {
 
     /*************************
      * Add an entry
-     * @param user
-     * @param message
+     * @param user username
+     * @param message String message to be delivered
      * @return  an integer of
      * the number of entries added
      *************************/
@@ -192,7 +192,9 @@ public abstract class MessageQueries {
         return result;
     }
 
-    // close the database connection
+    /**************************
+     * close the database connection
+     **************************/
     public void close() {
         try {
             connection.close();

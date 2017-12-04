@@ -131,8 +131,8 @@ public class Server extends JFrame {
         }
 
         /**
-         * waits for connection from Client threads & updates Server GUI accordingly
-         * @throws IOException
+         * waits for connection from Client threads and updates Server GUI accordingly
+         * @throws IOException exception if input or output stream has error
          */
         private void waitForConnection() throws IOException {
 

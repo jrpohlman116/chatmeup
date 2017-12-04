@@ -7,6 +7,12 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.List;
 
+/**
+ * ClientBackground class which handles all alterations for the Client
+ * in regards to connection to the host Server
+ * @see Client
+ * @see Server
+ */
 public class ClientBackground  extends SwingWorker<String, Void>{
     private JTextField enterField; // enters information from user
     private JTextArea displayArea; // display information to user
@@ -18,6 +24,13 @@ public class ClientBackground  extends SwingWorker<String, Void>{
     private String chatRoom;
     private String username;
 
+    /**
+     * ClientBackground constructor
+     * @param displayArea - JTextArea where texts will be displayed on GUI
+     * @param enterField - JTextField where the user can type and send text
+     * @param chatRoom - String that represents the chatRoom which Client belongs to
+     * @param user - username
+     */
     public ClientBackground(JTextArea displayArea, JTextField enterField, String chatRoom, String user){
         this.displayArea = displayArea;
         this.enterField = enterField;
@@ -25,9 +38,15 @@ public class ClientBackground  extends SwingWorker<String, Void>{
         this.username = user;
     }
 
+    /**
+     * Allows server to attempt to connect to server, get streams, and
+     * process the connection to the server until the connection is ended
+     * @return null data
+     * @throws Exception exception if input or output stream has error or connection is ended
+     */
     @Override
-    protected String doInBackground() throws Exception {
-        try // connect to server, get streams, process connection
+    public String doInBackground() throws Exception {
+        try
         {
             connectToServer(); // create a Socket to make connection
             getStreams(); // get the input and output streams
@@ -47,7 +66,10 @@ public class ClientBackground  extends SwingWorker<String, Void>{
         return null;
     }
 
-    // connect to server
+    /**
+     * connect to server
+     * @throws IOException exception if input or output stream has error
+     */
     private void connectToServer() throws IOException {
         // create Socket to make connection to server
         client = new Socket(InetAddress.getByName(chatServer), 23555);
@@ -58,7 +80,10 @@ public class ClientBackground  extends SwingWorker<String, Void>{
     }
 
 
-    // get streams to send and receive data
+    /**
+     * Retrieves output streams from the connection to the Server
+     * @throws IOException exception if input or output stream has error
+     */
     private void getStreams() throws IOException {
         // set up output stream for objects
         output = new ObjectOutputStream(client.getOutputStream());
@@ -68,7 +93,10 @@ public class ClientBackground  extends SwingWorker<String, Void>{
         input = new ObjectInputStream(client.getInputStream());
     }
 
-    // process connection with server
+    /**
+     * process connection with Server: process and properly respond to data from Server
+     * @throws IOException exception if input or output stream has error
+     */
     private void processConnection() throws IOException {
         // enable enterField so client user can send messages
         setTextFieldEditable(true);
@@ -87,7 +115,9 @@ public class ClientBackground  extends SwingWorker<String, Void>{
         } while (!message.equals("SERVER>>> TERMINATE"));
     }
 
-    // close streams and socket
+    /**
+     * Closes streams and socket if connection is meant to be broken
+     */
     private void closeConnection() {
         displayMessage("\nClosing connection");
         setTextFieldEditable(false);
@@ -102,7 +132,10 @@ public class ClientBackground  extends SwingWorker<String, Void>{
         }
     }
 
-    // send message to server
+    /**
+     * Sends messages to Server connected
+     * @param message String message sent to Server
+     */
     public void sendData(String message) {
         try // send object to server
         {
@@ -114,7 +147,10 @@ public class ClientBackground  extends SwingWorker<String, Void>{
         }
     }
 
-    // manipulates displayArea in the event-dispatch thread
+    /**
+     * Add message to GUI representing message from another user or the server
+     * @param messageToDisplay String message to be added to GUI
+     */
     private void displayMessage(final String messageToDisplay) {
         SwingUtilities.invokeLater(
                 new Runnable() {
@@ -126,7 +162,10 @@ public class ClientBackground  extends SwingWorker<String, Void>{
         );
     }
 
-    // manipulates enterField in the event-dispatch thread
+    /**
+     * Controls if enterField is editable for the Client (user)
+     * @param editable boolean yes/no if text field is editable
+     */
     private void setTextFieldEditable(final boolean editable) {
         SwingUtilities.invokeLater(
                 new Runnable() {
