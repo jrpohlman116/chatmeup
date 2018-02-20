@@ -13,7 +13,7 @@ import java.util.List;
  * @see Client
  * @see Server
  */
-public class ClientBackground  extends SwingWorker<String, Void>{
+public class ClientBackground  extends SwingWorker<Void, Void>{
     private JTextField enterField; // enters information from user
     private JTextArea displayArea; // display information to user
     private ObjectOutputStream output; // output stream to server
@@ -45,7 +45,7 @@ public class ClientBackground  extends SwingWorker<String, Void>{
      * @throws Exception exception if input or output stream has error or connection is ended
      */
     @Override
-    public String doInBackground() throws Exception {
+    public Void doInBackground() throws Exception {
         try
         {
             connectToServer(); // create a Socket to make connection
